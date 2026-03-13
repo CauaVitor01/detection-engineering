@@ -26,7 +26,7 @@ O relatório detalha como a telemetria do **Sysmon** e o **Script Block Logging*
 
 ---
 
-## 🛠️ Metodologia de Detecção
+## Metodologia de Detecção
 * **Análise Proativa:** Foco na redução do **Dwell Time** através da busca por padrões de execução "in-memory".
 * **Lógica de Busca:** Criação de consultas **KQL** baseadas em assinaturas de ferramentas de ataque e chamadas de sistema (Win32 APIs).
 * **Mapeamento:** Alinhamento total com as táticas finais do framework **MITRE ATT&CK**.
