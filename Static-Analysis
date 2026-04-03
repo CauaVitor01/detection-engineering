@@ -1,0 +1,26 @@
+Laboratório de Análise Estática de Malware
+
+Este repositório contém o registro técnico e as descobertas feitas durante o módulo de **Análise Estática Básica**. O foco foi a investigação de binários Windows (PE) sem a execução das amostras, utilizando ambientes isolados e ferramentas forenses.
+
+ Conteúdo do Documento PDF (Static_Analysis.pdf)
+O arquivo completo em PDF inclui:
+- Resoluções de Desafios Práticos: Identificação de strings e comportamentos em amostras reais.
+- Evidências Visuais: Capturas de tela (Prints) das ferramentas PEstudio, Capa e terminais da FLARE VM.
+- Checklist de Análise: Um guia passo a passo para triagem de arquivos suspeitos.
+
+Ferramentas Utilizadas
+- Ambiente: FLARE VM (Windows) & REMnux (Linux).
+- Extração de Dados: `strings.exe`, `FLOSS` (FireEye Labs Obfuscated String Solver).
+- Hashing: SHA-256 (Identidade), `Imphash` (Família) e `ssdeep` (Fuzzy Hashing/Similaridade).
+- Análise Estrutural: `PEstudio` (Inspeção de DLLs e APIs).
+- Táticas e Técnicas: `Capa` (Mapeamento MITRE ATT&CK e Malware Behavior Catalog).
+
+Descobertas Principais
+Durante os exercícios, foram analisadas 6 amostras de malware:
+- Evasão: Identificação de técnicas Anti-VM (Amostra 4 apresentou 86 correspondências).
+- Ofuscação: Recuperação de strings ocultas como `DbgView.exe` via FLOSS.
+- Conexões: Identificação da biblioteca `rpcrt4.dll` e `wininet.dll` para comunicação remota.
+- Similaridade: Uso de `ssdeep` para confirmar 93% de similaridade entre amostras de uma mesma linhagem.
+
+---
+> Nota de Segurança: Todas as análises foram realizadas em ambiente controlado utilizando Snapshots de Máquinas Virtuais para garantir o isolamento e a integridade do meu hardware.
