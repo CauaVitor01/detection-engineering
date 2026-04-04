@@ -2,7 +2,7 @@ Laboratório de Análise Estática de Malware
 
 Este repositório contém o registro técnico e as descobertas feitas durante o módulo de **Análise Estática Básica**. O foco foi a investigação de binários Windows (PE) sem a execução das amostras, utilizando ambientes isolados e ferramentas forenses.
 
- Conteúdo do Documento PDF (Static_Analysis.pdf)
+ Conteúdo do Documento PDF (Basic_Structural_Analysis.pdf)
 O arquivo completo em PDF inclui:
 - Resoluções de Desafios Práticos: Identificação de strings e comportamentos em amostras reais.
 - Evidências Visuais: Capturas de tela (Prints) das ferramentas PEstudio, Capa e terminais da FLARE VM.
