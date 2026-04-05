@@ -1,0 +1,34 @@
+Advanced Static Analysis
+
+1. Introdução à Análise Estática Avançada
+A análise avançada foca na desconstrução do código de máquina (Assembly) via desassembladores para entender a lógica interna do malware sem executá-lo. O objetivo é mapear o fluxo de controle, identificar APIs e vencer técnicas de evasão (Anti-VM/Anti-Debug).
+
+2. Ferramentas e Fluxo (Ghidra)
+O Ghidra (NSA) é a ferramenta base, utilizando seu **Descompilador** para traduzir instruções de baixo nível em pseudocódigo C legível.
+* **Symbol Tree:** Localização das funções `entry` ou `main`.
+* **Listing:** Visualização de Opcodes e instruções (`PUSH`, `CALL`).
+* **Strings:** Busca por textos, IPs e caminhos de arquivos ocultos.
+
+3. Estruturas de Código no Assembly
+* **Condicionais (If-Else):** Identificadas por `CMP` e saltos (`JZ`, `JNZ`).
+    * *Resultado (if-else.exe):* "This program demonstrates if-else construct".
+* **Loops (While/For):** Identificados por saltos que retornam a endereços anteriores.
+    * *Resultado (while-loop.exe):* Endereço do `CALL` final: **00401543**.
+
+4. Estudo de Caso: Process Hollowing (Benign.exe)
+Técnica de injeção onde o malware substitui o código de um processo legítimo pelo seu próprio.
+* **Processo Alvo:** O malware inicia o `iexplore.exe` em modo suspenso.
+* **Chamada de Criação:** API `CreateProcessA` no endereço virtual **0040108f**.
+* **Esvaziamento de Memória:** Realizado através da API **ZwUnmapViewOfSection**.
+* **Payload Injetado:** Localizado em `C:\Users\THM-Attacker\Desktop\Injectors\evil.exe`.
+* **Tratamento de Erro:** Caso o payload falhe, o fluxo desvia para o endereço **00401509**.
+      
+5. APIs Windows de Alto Interesse (SOC)
+A presença destas APIs nos *Imports* revela a categoria do malware:
+* **Keylogging:** `SetWindowsHookEx`, `GetAsyncKeyState`.
+* **C2 / Downloader:** `URLDownloadToFile`, `InternetOpen`, `HttpSendRequest`.
+* **Exfiltração:** `FtpPutFile`, `InternetReadFile`, `GetClipboardData`.
+* **Injeção / Dropper:** `VirtualAllocEx`, `WriteProcessMemory`, `ResumeThread`.
+* **Evasão:** `IsDebuggerPresent`, `CheckRemoteDebuggerPresent`, `GetTickCount`.
+
+---
